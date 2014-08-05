@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/PC167/Documents/NetBeansProjects/determinanteRinaDesktop.git/DeterminanteRina/src/determinanterina/FXMLDocumentController.java</file>
+=======
+            <file>file:/C:/Users/LuisAdrián/Git/gh/DeterminanteRina/src/determinanterina/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/LuisAdrián/Git/gh/DeterminanteRina/src/determinanterina/Matrices.java</file>
+            <file>file:/C:/Users/LuisAdrián/Git/gh/DeterminanteRina/src/determinanterina/DeterminanteRina.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
