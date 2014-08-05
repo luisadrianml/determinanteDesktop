@@ -12,7 +12,7 @@
     <children>
       <Pane maxHeight="339.0" maxWidth="282.0" minHeight="275.0" minWidth="272.0" prefHeight="305.0" prefWidth="277.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="14.0" layoutY="109.0" text="Orden" />
+            <Label layoutX="14.0" layoutY="109.0" text="Orden:" />
             <TextField fx:id="numeroM" layoutX="14.0" layoutY="147.0" prefHeight="25.0" prefWidth="187.0" promptText="Digite numero (matriz #1)" />
             <Button fx:id="buttonEnter" layoutX="206.0" layoutY="147.0" mnemonicParsing="false" onAction="#enterNumber" prefHeight="25.0" prefWidth="57.0" text="Enter" />
             <ComboBox fx:id="ordenSelection" layoutX="56.0" layoutY="105.0" prefHeight="25.0" prefWidth="206.0" />

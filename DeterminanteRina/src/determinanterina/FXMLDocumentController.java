@@ -175,7 +175,7 @@ public class FXMLDocumentController implements Initializable {
                 + "¡Suerte!");
         ordenSelection.getItems().clear();
         ordenSelection.getItems().addAll("2","3", "4","5", "6","8","9");
-        ordenSelection.setPromptText("Seleccione un orden:");
+        ordenSelection.setPromptText("Seleccione un orden");
         keyType(numeroM);
         keyPressed(numeroM);
         ordenSelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
