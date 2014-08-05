@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -29,6 +30,11 @@ public class DeterminanteRina extends Application {
         
         Scene scene = new Scene(root);
         
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("icon.png")));
+        stage.setTitle("PF: Algoritmo");
+        stage.setWidth(285);
+        stage.setHeight(335);
+        stage.setResizable(false);
         stage.setScene(scene);
 
         stage.show();  

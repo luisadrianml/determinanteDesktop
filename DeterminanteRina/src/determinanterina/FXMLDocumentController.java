@@ -21,41 +21,21 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 
 
 /**
  *
- * @author pc167
+ * @author LuisAdrianML
  */
 public class FXMLDocumentController implements Initializable {
     
     @FXML
     private TextField numeroM;
-    
-        @FXML
-    private Label filaycolumna;
-        
-    @FXML
-    private Label lblMatriz;
-    
-     @FXML
-    private TextField numeroM2;
 
     @FXML
-    private Button buttonEnter2;
-    
-        @FXML
-    private Label labelnumberMatriz;
-
-    @FXML
-    private Label detailsLabel;
-
-    @FXML
-    private Label messageLabel;
-    
-        @FXML
     private Button buttonEnter;
     
     private int matrix1[][]; 
@@ -80,23 +60,24 @@ public class FXMLDocumentController implements Initializable {
         if (!numeroM.getText().isEmpty()) {
             guardarenMatriz(Integer.parseInt(entrada), posM);
             numeroM.clear();
-            labelSetFilaColumna();
-            if (matrixFull()) {
-                completed();
+
+            if (isMatrixFull()) {
+                isCompleted();
                 if(posM==2) {
                 limpiar();
                 }
-            }       
+            }     
+            labelSetFilaColumna();
         }
 
     }
     
-    void completed() {
+    void isCompleted() {
                 numeroM.setEditable(false);
                 numeroM.clear();
                 buttonEnter.setDisable(true);
                 numeroM.setDisable(true);
-                numeroM.setPromptText("Matrices llena");
+                numeroM.setPromptText("Uff, llenamos las matrices");
                 f=0;c=0;
                 posM++;
                 if (posM==3) {
@@ -105,21 +86,9 @@ public class FXMLDocumentController implements Initializable {
     }
     
     
-    boolean matrixFull() {
-        if(fin && f==nP) {
-            return true;
-        } else {
-            return false;
-        }
+    boolean isMatrixFull() {
+        return fin && f==nP;
         
-    }
-    
-    void imprimirMatrix() {
-        for (int i=0;i<nP;i++) {
-            for (int e=0; i<nP; e++) {
-                System.out.println(matrix1[i][e]);
-            }
-        }
     }
     
     void guardarenMatriz(int numero, int posMatrix) {
@@ -134,10 +103,8 @@ public class FXMLDocumentController implements Initializable {
                         matrix2[f][c] = numero;
                         break;
                     }
-                } 
-                
-                System.out.println("Matriz#"+posMatrix+"["+f+"]["+c+"]: "+numero);
-                
+                }  
+                //System.out.println("Matriz#"+posMatrix+"["+f+"]["+c+"]: "+numero);   
                 c++;
             }
                 if (nP==c) {
@@ -149,7 +116,6 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    
     public void selected(String s) {
         createMatrix(Integer.parseInt(s));
         limpiar();
@@ -164,6 +130,7 @@ public class FXMLDocumentController implements Initializable {
         c = 0;
         
     }
+    
     public void createMatrix(int n) {
         matrix1 = new int[n][n];
         matrix2 = new int[n][n];
@@ -171,48 +138,83 @@ public class FXMLDocumentController implements Initializable {
     }
 
     
-     private void keyType(final TextField textField){
+    private void keyType(final TextField textField){
          textField.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
         @Override 
         public void handle(KeyEvent inputevent) {
               if (!(inputevent.getCharacter().matches("[0-9]"))|| textField.getText().length()>14) {              
-                           inputevent.consume();
-                           
+                           inputevent.consume();                   
         }
             }
         });
-         
-     }
+    }
+     
+    private void keyPressed(final TextField textField) {
+         textField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent ke)
+            {
+                if (ke.getCode().equals(KeyCode.ENTER))
+                {
+                    enterNumber(null);
+                }
+            }
+        });
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         textAreaResultados.setEditable(false);
+        numeroM.setEditable(false);
+        numeroM.setPromptText("Uhm.. Aun no estamos listos");
+        textAreaResultados.setText("Bienvenidos, \n"
+                + "El primer paso es seleccionar el grado \n"
+                + "para luego insertar los datos de la \n"
+                + "matriz, hasta llegar al resultado. \n\n"
+                + "¡Suerte!");
         ordenSelection.getItems().clear();
         ordenSelection.getItems().addAll("2","3", "4","5", "6","8","9");
-        lblMatriz.setVisible(false);
-        labelnumberMatriz.setVisible(false);
+        ordenSelection.setPromptText("Seleccione un orden:");
         keyType(numeroM);
-        
+        keyPressed(numeroM);
         ordenSelection.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-
             @Override
             public void changed(ObservableValue<? extends String> ov, String t, String t1) {
             if (t1 != null) {
                 selected(t1);
+                restart();
             }
             labelSetFilaColumna();
             }
             
         });
-    }    
+    }   
+    
+    private void restart() {
+        f=0;
+        c=0;
+        posM=1;
+        numeroM.setEditable(true);
+        numeroM.setDisable(false);
+        numeroM.setPromptText("Digite numero (matriz #"+posM+")");
+        buttonEnter.setDisable(false);
+        textAreaResultados.clear();
+        
+        
+    }
 
     private void labelSetFilaColumna() {
-        filaycolumna.setText("[Fila: "+(f+1)+"][Columna: "+(c+1)+"]");
-    }
+
+        if (posM!=3) {
+            textAreaResultados.setText("Matriz #"+posM+" [Fila: "+(f+1)+"][Columna: "+(c+1)+"]");
+        } 
+    } 
 
     private void procesos() {
        
+            textAreaResultados.clear();
+            
             textAreaResultados.appendText("\nDeterminate #1: "+ Matrices.determinante(matrix1));
             textAreaResultados.appendText("\nDeterminate #2: "+ Matrices.determinante(matrix2));
             textAreaResultados.appendText("\n");
@@ -239,6 +241,7 @@ public class FXMLDocumentController implements Initializable {
             textAreaResultados.appendText("\nProducto de columnas para determinantes :");
             textAreaResultados.appendText("\nVector determinante 1: " + Arrays.toString(producto1));
             textAreaResultados.appendText("\nVector determinante 2: " + Arrays.toString(producto2));
+            textAreaResultados.appendText("\n");
   
 
         }
@@ -266,16 +269,17 @@ public class FXMLDocumentController implements Initializable {
                 divisionDeterminantes = 0;
             }   
             
-            textAreaResultados.appendText("\n");
+            
             textAreaResultados.appendText("\nProducto de determinantes: \n");
             textAreaResultados.appendText(Double.toString(productoDeterminantes));
             textAreaResultados.appendText("\n");
             textAreaResultados.appendText("\nDivision de determinantes: \n");
             textAreaResultados.appendText(Double.toString(divisionDeterminantes));
+            textAreaResultados.appendText("\n");
         }
         if (nP>=4 && nP<=7) {
             
-            textAreaResultados.appendText("\n");
+ 
             textAreaResultados.appendText("\nDeterminante con raiz: ");
             if (Matrices.sumaInternaVector(Matrices.sumaFila(new int[matrix1.length], matrix1))>Matrices.productoInternaVector(Matrices.productoColumna(new int[matrix1.length], matrix1))) {
                 int [][] matrizNewS1 = Matrices.cambiarMatriz(matrix1, 1);
