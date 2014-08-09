@@ -42,6 +42,7 @@ public class Matrices {
     }
     
     public static int[] productoColumna(int[] producto, int[][] matriz) {
+        llenarVector(producto, 1);
         for (int column=0;column<producto.length;column++) {
                 for (int fila=0;fila<producto.length;fila++) {
                     producto[column] = producto[column] * matriz[fila][column];
@@ -52,6 +53,7 @@ public class Matrices {
     }
     
     public static int[] productoFila(int[] producto, int[][] matriz) {
+        llenarVector(producto, 1);
         for (int fila=0;fila<producto.length;fila++) {
                 for (int column=0;column<producto.length;column++) {
                     producto[fila] = producto[fila] * matriz[fila][column];
@@ -101,7 +103,8 @@ public class Matrices {
         suma-=matriz[i][0] * determinante(nm);
     }
     return suma;
-}public static int[] llenarVector(int[] vector, int contenido) {
+}
+    public static int[] llenarVector(int[] vector, int contenido) {
             for (int fila=0;fila<vector.length;fila++) {
                 vector[fila] = contenido;
             }
@@ -109,29 +112,29 @@ public class Matrices {
     }
 
 public static int[][] cambiarMatriz(int[][] matriz, int operacion) {
+        int[][] temp = matriz;
         switch (operacion) {
             case 1: {
                 // raiz
                 for (int fila=0;fila<matriz.length;fila++) {
                     for (int column=0;column<matriz.length;column++) {
-                         matriz[fila][column] = (int) Math.sqrt(matriz[fila][column]); 
+                         matriz[fila][column] = (int) Math.sqrt(temp[fila][column]); 
                     }
                 }
-                return matriz;
+                break;
             }
             case 2: {
                 // logaritmo natural
                 for (int fila=0;fila<matriz.length;fila++) {
                     for (int column=0;column<matriz.length;column++) {
-                         matriz[fila][column] = (int) Math.log(matriz[fila][column]); 
+                         matriz[fila][column] = (int) Math.log(temp[fila][column]); 
                     }
                 }
-                return matriz;
+                break;
             }
         }
         
-        
-        return matriz;
+    return matriz;
     }
 
     public static int productoInternaVector(int[] vector) {
