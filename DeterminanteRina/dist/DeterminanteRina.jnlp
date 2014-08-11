@@ -4,6 +4,8 @@
     <title>DeterminanteRina</title>
     <vendor>pc167</vendor>
     <description>null</description>
+    <icon href="C:\Users\LuisAdrián\Downloads\icon.ico"  kind="splash"/>
+    <icon href="C:\Users\LuisAdrián\Git\gh\DeterminanteRina\build\icon\DeterminanteRina.ico" />
     <offline-allowed/>
   </information>
   <resources>
@@ -11,11 +13,12 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="DeterminanteRina.jar" size="395804" download="eager" />
+    <jar href="DeterminanteRina.jar" size="394005" download="eager" />
   </resources>
 <security>
   <all-permissions/>
 </security>
+  <shortcut><desktop/></shortcut>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="DeterminanteRina" >
     <param name="requiredFXVersion" value="2.2+"/>
   </applet-desc>
