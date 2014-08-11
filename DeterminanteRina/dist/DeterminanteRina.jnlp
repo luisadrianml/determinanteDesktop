@@ -11,7 +11,7 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="DeterminanteRina.jar" size="394005" download="eager" />
+    <jar href="DeterminanteRina.jar" size="395804" download="eager" />
   </resources>
 <security>
   <all-permissions/>

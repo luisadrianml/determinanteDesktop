@@ -279,8 +279,10 @@ public class FXMLDocumentController implements Initializable {
         if (nP>=4 && nP<=7) {
             
  
-            textAreaResultados.appendText("\nDeterminante con raiz: ");
+            
             if (Matrices.sumaInternaVector(Matrices.sumaFila(new int[matrix1.length], matrix1))>Matrices.productoInternaVector(Matrices.productoColumna(new int[matrix1.length], matrix1))) {
+                textAreaResultados.appendText("\nDeterminante con raiz: ");
+                
                 int [][] matrizNewS1 = Matrices.cambiarMatriz(matrix1, 1);
                 double determinanteSuma1 = Matrices.determinante(matrizNewS1);
                 textAreaResultados.appendText("\n");
@@ -288,6 +290,7 @@ public class FXMLDocumentController implements Initializable {
            
             }
             if (Matrices.sumaInternaVector(Matrices.sumaFila(new int[matrix2.length], matrix2))>Matrices.productoInternaVector(Matrices.productoColumna(new int[matrix2.length], matrix1))) {
+                textAreaResultados.appendText("\nDeterminante con raiz: ");
                 int [][] matrizNewS2 = Matrices.cambiarMatriz(matrix2, 1);
                 double determinanteSuma2 = Matrices.determinante(matrizNewS2);
 
@@ -296,9 +299,10 @@ public class FXMLDocumentController implements Initializable {
             }
             
             textAreaResultados.appendText("\n");
-            textAreaResultados.appendText("\nDeterminante con logaritmo: ");
+            
             
             if (Matrices.productoInternaVector(Matrices.productoFila(new int[matrix1.length], matrix1))<Matrices.sumaInternaVector(Matrices.sumaColumna(new int[matrix1.length], matrix1))) {
+                textAreaResultados.appendText("\nDeterminante con logaritmo: ");
                 int [][] matrizNewP1 = Matrices.cambiarMatriz(matrix1, 2);
                 double determinanteProducto1 = Matrices.determinante(matrizNewP1);
 
@@ -306,6 +310,7 @@ public class FXMLDocumentController implements Initializable {
                 textAreaResultados.appendText(Double.toString(determinanteProducto1));
             } 
             if (Matrices.productoInternaVector(Matrices.productoFila(new int[matrix2.length], matrix2))<Matrices.sumaInternaVector(Matrices.sumaColumna(new int[matrix1.length], matrix1))) {
+                textAreaResultados.appendText("\nDeterminante con logaritmo: ");
                 int [][] matrizNewP2 = Matrices.cambiarMatriz(matrix2, 2);
                 double determinanteProducto2 = Matrices.determinante(matrizNewP2);
 

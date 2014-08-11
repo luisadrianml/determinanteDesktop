@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package determinanterina;
+
+
 
 /**
  *
@@ -42,7 +38,7 @@ public class Matrices {
     }
     
     public static int[] productoColumna(int[] producto, int[][] matriz) {
-        llenarVector(producto, 1);
+        producto = llenarVector(producto, 1);
         for (int column=0;column<producto.length;column++) {
                 for (int fila=0;fila<producto.length;fila++) {
                     producto[column] = producto[column] * matriz[fila][column];
@@ -53,7 +49,7 @@ public class Matrices {
     }
     
     public static int[] productoFila(int[] producto, int[][] matriz) {
-        llenarVector(producto, 1);
+        producto = llenarVector(producto, 1);
         for (int fila=0;fila<producto.length;fila++) {
                 for (int column=0;column<producto.length;column++) {
                     producto[fila] = producto[fila] * matriz[fila][column];
